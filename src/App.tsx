@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import request from './utils/requestToWeatherApi';
 import showCurrentWeatherImage from './utils/showCurrentWeatherImage';
 import './styles/app.scss'
-import Day from './components/Day';
+import WeatherComponent from './components/WeatherComponent';
+import { Data } from './interfaces/data.interface';
+import { defaultDataValue } from './constraints/defaultDataValue';
 
 function App() {
-  const [data, setData]: [any, any] = useState([])
+  const [data, setData]: [Data, Function] = useState(defaultDataValue)
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(async ({coords}) => {
@@ -20,7 +22,9 @@ function App() {
   const image = showCurrentWeatherImage(currentCondition);
 
   return (
-    <Day data={data} currentCondition={currentCondition} image={image} />
+    <div>
+      <WeatherComponent data={data} currentCondition={currentCondition} image={image} />
+    </div>
   )
 }
 

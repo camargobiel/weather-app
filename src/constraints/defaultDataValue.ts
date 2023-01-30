@@ -1,0 +1,1 @@
+export const defaultDataValue = { location: { name: '' }, current: { condition: { text: '' } } }
